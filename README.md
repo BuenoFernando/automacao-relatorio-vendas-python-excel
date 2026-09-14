@@ -156,6 +156,15 @@ com o nome:
 ```text
 relatorio_vendas.xlsx
 ```
+## Visualização do Projeto
+
+### Dashboard de Vendas
+
+![Dashboard de Vendas](imagens/dashboard_vendas.png)
+
+### Relatório de Vendas
+
+![Relatório de Vendas](imagens/relatorio_vendas.png)
 
 ## Projeto desenvolvido para portfólio
 
