@@ -1,0 +1,33 @@
+# Python
+
+**pycache**/
+*.py[cod]
+*$py.class
+
+# Ambientes virtuais
+
+.venv/
+venv/
+env/
+
+# Arquivos temporários
+
+*.tmp
+*.temp
+*.log
+
+# Arquivos temporários do Excel
+
+~$*.xlsx
+~$*.xls
+~$*.xlsm
+
+# Arquivos temporários do sistema
+
+.DS_Store
+Thumbs.db
+
+# Configurações de editores
+
+.vscode/
+.idea/
