@@ -1,54 +1,96 @@
-import pandas as pd
+from pathlib import Path
+import subprocess
+import sys
 
-# Caminho da base
-caminho = "../dados/vendas.xlsx"
 
-# Ler a base
-df = pd.read_excel(caminho)
+# ==========================================
+# CONFIGURAÇÃO
+# ==========================================
 
-# Considerar apenas vendas concluídas
-df_concluido = df[df["Status"] == "Concluído"].copy()
+BASE_DIR = Path(__file__).resolve().parent
 
-# Indicadores
-faturamento_total = df_concluido["Faturamento"].sum()
-quantidade_vendida = df_concluido["Quantidade"].sum()
-total_pedidos = len(df_concluido)
 
-ticket_medio = faturamento_total / total_pedidos
+def executar_script(nome_script):
+    """
+    Executa um script Python localizado na mesma pasta.
+    """
 
-# Produto mais vendido
-produto_mais_vendido = (
-    df_concluido.groupby("Produto")["Quantidade"]
-    .sum()
-    .sort_values(ascending=False)
-    .index[0]
-)
+    caminho_script = BASE_DIR / nome_script
 
-# Região com maior faturamento
-regiao_maior_faturamento = (
-    df_concluido.groupby("Região")["Faturamento"]
-    .sum()
-    .sort_values(ascending=False)
-    .index[0]
-)
+    resultado = subprocess.run(
+        [sys.executable, str(caminho_script)],
+        capture_output=False
+    )
 
-# Vendedor com maior faturamento
-vendedor_destaque = (
-    df_concluido.groupby("Vendedor")["Faturamento"]
-    .sum()
-    .sort_values(ascending=False)
-    .index[0]
-)
+    if resultado.returncode != 0:
+        raise RuntimeError(
+            f"Erro ao executar o arquivo: {nome_script}"
+        )
 
-# Exibir resultados
-print("\n===== RELATÓRIO DE VENDAS =====")
 
-print(f"Faturamento total: R$ {faturamento_total:,.2f}")
-print(f"Quantidade vendida: {quantidade_vendida}")
-print(f"Pedidos concluídos: {total_pedidos}")
-print(f"Ticket médio: R$ {ticket_medio:,.2f}")
-print(f"Produto mais vendido: {produto_mais_vendido}")
-print(f"Região com maior faturamento: {regiao_maior_faturamento}")
-print(f"Vendedor destaque: {vendedor_destaque}")
+# ==========================================
+# PROCESSO PRINCIPAL
+# ==========================================
 
-print("\nRelatório calculado com sucesso!")
+def main():
+
+    print()
+    print("=" * 55)
+    print(" SISTEMA DE ANÁLISE E AUTOMAÇÃO DE VENDAS")
+    print("=" * 55)
+
+    # --------------------------------------
+    # 1. VALIDAR BASE
+    # --------------------------------------
+
+    print()
+    print("ETAPA 1 - VALIDAÇÃO DOS DADOS")
+    print("-" * 55)
+
+    executar_script("validar_dados.py")
+
+    # --------------------------------------
+    # 2. ANALISAR VENDAS
+    # --------------------------------------
+
+    print()
+    print("ETAPA 2 - ANÁLISE DAS VENDAS")
+    print("-" * 55)
+
+    executar_script("analisar_vendas.py")
+
+    # --------------------------------------
+    # 3. GERAR RELATÓRIO EXCEL
+    # --------------------------------------
+
+    print()
+    print("ETAPA 3 - GERAÇÃO DO RELATÓRIO EXCEL")
+    print("-" * 55)
+
+    executar_script("gerar_excel.py")
+
+    # --------------------------------------
+    # FINALIZAÇÃO
+    # --------------------------------------
+
+    print()
+    print("=" * 55)
+    print(" PROCESSO CONCLUÍDO COM SUCESSO!")
+    print("=" * 55)
+
+    print()
+    print("Arquivos processados:")
+    print("✓ Base de vendas validada")
+    print("✓ Dados analisados")
+    print("✓ Indicadores calculados")
+    print("✓ Relatório Excel gerado")
+    print("✓ Dashboard atualizado")
+    print()
+
+
+# ==========================================
+# EXECUÇÃO
+# ==========================================
+
+if __name__ == "__main__":
+    main()

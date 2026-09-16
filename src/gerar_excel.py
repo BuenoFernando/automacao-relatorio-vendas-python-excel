@@ -1,3 +1,4 @@
+from pathlib import Path
 import pandas as pd
 from openpyxl import load_workbook
 from openpyxl.styles import Font, Alignment
@@ -8,8 +9,12 @@ from openpyxl.chart import BarChart, Reference
 # CONFIGURAÇÕES
 # ==============================
 
-arquivo_entrada = "../dados/vendas.xlsx"
-arquivo_saida = "../relatorios/relatorio_vendas.xlsx"
+# Caminho da pasta do projeto
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Arquivos de entrada e saída
+arquivo_entrada = BASE_DIR / "dados" / "vendas.xlsx"
+arquivo_saida = BASE_DIR / "relatorios" / "relatorio_vendas.xlsx"
 
 # ==============================
 # LEITURA DA BASE
