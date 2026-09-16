@@ -1,152 +1,171 @@
-# 📊 Sistema de Análise e Automação de Vendas
+# Automação de Relatório de Vendas — Python + Excel
 
-Sistema desenvolvido em **Python** para validação, análise e automação de relatórios de vendas, utilizando **Pandas, OpenPyXL e Excel**.
+Projeto de automação desenvolvido em Python para geração de relatórios de vendas a partir de uma base de dados em Excel.
 
-O projeto automatiza o processamento de uma base de vendas, valida a qualidade dos dados, calcula indicadores e gera um relatório Excel com **dashboard e gráficos para análise gerencial**.
+O projeto simula um cenário empresarial no qual dados de vendas são processados automaticamente para gerar indicadores, análises e um relatório gerencial em Excel.
 
----
+## Objetivo
 
-## 🎯 Objetivo
+Automatizar o processamento de dados de vendas, reduzindo tarefas manuais e facilitando a análise dos principais indicadores comerciais.
 
-Demonstrar a aplicação de **Python na automação de processos, tratamento de dados e geração de relatórios**, reduzindo tarefas manuais e facilitando a análise de informações comerciais.
+A solução realiza:
 
----
+* criação de uma base de vendas;
+* processamento e filtragem dos dados;
+* cálculo de indicadores;
+* análise por produto, região, vendedor e forma de pagamento;
+* geração automática de um relatório Excel;
+* criação de gráficos;
+* criação de um Dashboard gerencial.
 
-## 🛠️ Tecnologias
+## Tecnologias utilizadas
 
-* 🐍 **Python**
-* 🐼 **Pandas**
-* 📗 **OpenPyXL**
-* 📊 **Excel**
-* 📁 **Pathlib**
-* ⚙️ **Subprocess**
+* Python
+* Pandas
+* OpenPyXL
+* Excel
 
----
-
-## ⚙️ Funcionalidades
-
-* ✅ Validação automática da base de vendas
-* ✅ Verificação de campos obrigatórios e dados preenchidos
-* ✅ Validação de datas, quantidades e preços
-* ✅ Validação do cálculo de faturamento
-* ✅ Identificação de pedidos duplicados
-* ✅ Validação de status e formas de pagamento
-* ✅ Cálculo de indicadores de vendas
-* ✅ Análise por produto, região e vendedor
-* ✅ Evolução mensal das vendas
-* ✅ Geração automática de relatório Excel
-* ✅ Criação de dashboard com indicadores e gráficos
-
----
-
-## 📈 Indicadores
-
-O sistema calcula automaticamente:
-
-* 💰 Faturamento realizado
-* 📦 Quantidade vendida
-* 🧾 Total de pedidos concluídos
-* ❌ Pedidos cancelados
-* 🎯 Ticket médio
-* 🏆 Produtos com maior faturamento
-* 🌎 Faturamento por região
-* 👤 Faturamento por vendedor
-* 📅 Evolução mensal das vendas
-
-> Para os indicadores de vendas realizadas, são considerados apenas os pedidos com status **Concluído**.
-
----
-
-## 📊 Resultado
-
-A execução do sistema gera automaticamente um arquivo Excel contendo:
-
-* **Dashboard**
-* **Resumo**
-* **Análise por Produto**
-* **Análise por Região**
-* **Análise por Vendedor**
-* **Análise por Forma de Pagamento**
-* **Gráficos para apoio à análise**
-
----
-
-## 📁 Estrutura do Projeto
+## Estrutura do projeto
 
 ```text
-Automacao_Relatorio_Vendas/
+Automacao_Relatorio_Vendas
 │
-├── dados/
+├── dados
 │   └── vendas.xlsx
 │
-├── relatorios/
+├── relatorios
 │   └── relatorio_vendas.xlsx
 │
-├── src/
+├── src
 │   ├── criar_base.py
-│   ├── validar_dados.py
-│   ├── analisar_vendas.py
 │   ├── gerar_relatorio.py
 │   └── gerar_excel.py
 │
-├── .gitignore
 └── README.md
 ```
 
----
+## Funcionamento
 
-## ▶️ Como Executar
+O processo foi dividido em três etapas principais.
 
-### 1. Instalar as dependências
+### 1. Criação da base
 
-```bash
-pip install pandas openpyxl
-```
+O arquivo `criar_base.py` gera uma base de vendas simulada contendo informações como:
 
-### 2. Executar o sistema
+* data da venda;
+* produto;
+* categoria;
+* região;
+* vendedor;
+* quantidade;
+* valor;
+* forma de pagamento;
+* status do pedido.
 
-Na pasta principal do projeto:
-
-```bash
-python src/gerar_relatorio.py
-```
-
-O sistema executará automaticamente as etapas de:
-
-```text
-Validação dos dados
-        ↓
-Análise das vendas
-        ↓
-Geração do relatório Excel
-        ↓
-Atualização do Dashboard
-```
-
-O relatório final será salvo em:
+A base é salva automaticamente em:
 
 ```text
-relatorios/relatorio_vendas.xlsx
+dados/vendas.xlsx
 ```
 
----
+### 2. Processamento dos dados
 
-## 💼 Aplicação Profissional
+O arquivo `gerar_relatorio.py` utiliza Pandas para processar os dados e calcular indicadores como:
 
-O projeto simula uma rotina de **análise e automação de processos comerciais**, demonstrando conhecimentos aplicáveis a atividades de:
+* faturamento total;
+* quantidade vendida;
+* pedidos concluídos;
+* ticket médio;
+* produto mais vendido;
+* região com maior faturamento;
+* vendedor destaque.
 
-* Análise de dados
-* Automação de processos
-* Tratamento e validação de informações
-* Geração de relatórios
-* Indicadores de desempenho
-* Apoio à tomada de decisão
+### 3. Geração do relatório
 
----
+O arquivo `gerar_excel.py` cria automaticamente o relatório final em Excel.
 
-## 👨‍💻 Autor
+O arquivo gerado contém as seguintes abas:
 
-**Fernando Bueno**
+* Dashboard
+* Resumo
+* Por Produto
+* Por Região
+* Por Vendedor
+* Por Pagamento
 
-🎓 Engenheiro de Computação
-💻 Em transição para a área de Tecnologia da Informação
+Além das tabelas analíticas, o relatório possui gráficos para facilitar a visualização dos resultados.
+
+## Indicadores gerados
+
+O Dashboard apresenta os principais KPIs do período analisado:
+
+* **Faturamento Total:** R$ 276.520,00
+* **Quantidade Vendida:** 309
+* **Pedidos Concluídos:** 113
+* **Ticket Médio:** R$ 2.447,08
+
+## Resultado
+
+A automação transforma uma base de vendas em um relatório gerencial estruturado, permitindo visualizar rapidamente os principais indicadores e análises comerciais.
+
+O projeto demonstra conhecimentos práticos em:
+
+* manipulação e tratamento de dados;
+* análise de informações;
+* automação de tarefas;
+* geração de relatórios;
+* Python;
+* Pandas;
+* Excel;
+* OpenPyXL.
+
+## Como executar
+
+Com Python instalado, abra o terminal dentro da pasta:
+
+```text
+src
+```
+
+Execute os scripts na seguinte ordem:
+
+```bash
+python criar_base.py
+```
+
+Depois:
+
+```bash
+python gerar_relatorio.py
+```
+
+E por último:
+
+```bash
+python gerar_excel.py
+```
+
+O relatório final será criado automaticamente na pasta:
+
+```text
+relatorios
+```
+
+com o nome:
+
+```text
+relatorio_vendas.xlsx
+```
+## Visualização do Projeto
+
+### Dashboard de Vendas
+
+![Dashboard de Vendas](imagens/dashboard_vendas.png)
+
+### Relatório de Vendas
+
+![Relatório de Vendas](imagens/relatorio_vendas.png)
+
+## Projeto desenvolvido para portfólio
+
+Este projeto faz parte do portfólio de transição profissional para a área de Tecnologia da Informação, com foco em **Análise de Sistemas, Análise de Dados, Automação e Processos**.
