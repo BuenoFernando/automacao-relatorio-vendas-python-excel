@@ -275,7 +275,6 @@ O Dashboard apresenta os principais indicadores do período analisado:
 * **Faturamento Total:** R$ 276.520,00
 * **Quantidade Vendida:** 309
 * **Pedidos Concluídos:** 113
-* **Pedidos Cancelados:** 37
 * **Ticket Médio:** R$ 2.447,08
 
 Também são disponibilizadas análises de:
